@@ -8,7 +8,7 @@ const sendAlert = ({ message, domain }) =>
 
 const errorHandling = (obj, reject) => {
   sendAlert(obj);
-  return reject(obj); // returning a promise
+  return reject(obj); // returning a promise object
 };
 
 // sometimes a link returns status code 200 with html but when its actually showing the 404 page
