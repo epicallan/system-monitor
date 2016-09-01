@@ -14,16 +14,15 @@ const checkLinkHasRightContent = (domain, body) => {
 };
 
 /* eslint-disable no-unused-expressions */
-const domainStatus = ({ statusCode, body, domain }) =>
+const domainStatus = ({ body, domain }) =>
   new Promise((resolve, reject) => {
-    if (statusCode !== 200) reject({ statusCode, domain });
     if (domain.html) {
-      const hasExpectedText = checkLinkHasRightContent(domain, body);
-      if (hasExpectedText) {
+      if (checkLinkHasRightContent(domain, body)) {
         resolve({ message: 'domain is alive', domain });
       } else {
-        reject({ message: ' domain is probably showing an error page', domain });
-        sendAlert({ message: ' domain is inaccessible', domain });
+        const message = ' domain is probably showing an error page';
+        reject({ message, domain });
+        sendAlert({ message, domain });
       }
     } else {
       resolve({ message: 'domain is alive', domain });
@@ -42,10 +41,11 @@ const httpGet = domain => new Promise((resolve, reject) => {
     } else {
       const statusCode = response.statusCode;
       if (statusCode === 200) {
-        resolve({ statusCode, body, domain });
+        resolve({ body, domain });
       } else {
-        reject({ message: `domain status code is ${statusCode}`, domain });
-        sendAlert({ message: `domain is off with status code ${statusCode}`, domain });
+        const message = `domain is off with status code ${statusCode}`;
+        reject({ message, domain });
+        sendAlert({ message, domain });
       }
     }
   });
