@@ -6,6 +6,12 @@ const cheerio = require('cheerio');
 const sendAlert = ({ message, domain }) =>
   mailer(`domain is down, check server!! ${message}`, domain);
 
+const errorHandling = (obj, reject) => {
+  sendAlert(obj);
+  return reject(obj);
+};
+
+
 const checkLinkHasRightContent = (domain, body) => {
   const dom = cheerio.load(body);
   const tag = Object.keys(domain.html)[0];
@@ -21,8 +27,7 @@ const domainStatus = ({ body, domain }) =>
         resolve({ message: 'domain is alive', domain });
       } else {
         const message = ' domain is probably showing an error page';
-        reject({ message, domain });
-        sendAlert({ message, domain });
+        errorHandling({ message, domain }, reject);
       }
     } else {
       resolve({ message: 'domain is alive', domain });
@@ -36,20 +41,19 @@ const addLink = domain => Object.assign(domain, { link: createLink(domain) });
 const httpGet = domain => new Promise((resolve, reject) => {
   http(domain.link, (error, response, body) => {
     if (error) {
-      sendAlert({ message: error, domain });
-      reject({ message: error, domain });
+      errorHandling({ message: error, domain }, reject);
     } else {
       const statusCode = response.statusCode;
       if (statusCode === 200) {
         resolve({ body, domain });
       } else {
         const message = `domain is off with status code ${statusCode}`;
-        reject({ message, domain });
-        sendAlert({ message, domain });
+        errorHandling({ message, domain }, reject);
       }
     }
   });
 });
+
 
 const logger = ({ message, domain }) =>
     new Promise(resolve => resolve(`${domain.link} :  ${message}`));
