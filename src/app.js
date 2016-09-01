@@ -3,10 +3,24 @@ const logger = require('morgan');
 const routes = require('./router');
 const monitor = require('./monitor');
 const app = express();
+const INTERVAL = 60000 * 10; // check every after 10 mins
 
 app.use(logger('dev'));
 
-monitor();
+// run periodic checks
+setInterval(() => {
+  const monitorPromises = monitor();
+  Promise.all(monitorPromises).then(console.log);
+}, INTERVAL);
+
+/* eslint-disable no-param-reassign */
+app.use((req, res, next) => {
+  console.log('path: ', req.path);
+  // add the monitor object to the request object so that we can call it at will
+  // from a route
+  if (req.path === '/status') req.monitor = monitor;
+  next();
+});
 
 app.use('/', routes);
 
