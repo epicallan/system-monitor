@@ -1,4 +1,4 @@
-## System admin currently checking whether various apps are up
+## System admin app currently checking whether various apps are up
 
 ### How to get set up
 1. Clone the repo <br>
