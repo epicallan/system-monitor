@@ -11,15 +11,17 @@ const errorHandling = (obj, reject) => {
   return reject(obj);
 };
 
-
+// sometimes a link returns status code 200 with html but when its actually showing the 404 page
+// for such cases we check whether it has some particular content it ought to have
 const checkLinkHasRightContent = (domain, body) => {
   const dom = cheerio.load(body);
-  const tag = Object.keys(domain.html)[0];
+  const tag = Object.keys(domain.html)[0]; // the html tag which has our test content
   const expectedText = dom(tag).text();
-  return expectedText.includes(domain.html[tag]);
+  return expectedText.includes(domain.html[tag]); // asserting it has the text it must
 };
 
 /* eslint-disable no-unused-expressions */
+// return promises that let us know whether a domain is fine or not
 const domainStatus = ({ body, domain }) =>
   new Promise((resolve, reject) => {
     if (domain.html) {
@@ -33,10 +35,12 @@ const domainStatus = ({ body, domain }) =>
       resolve({ message: 'domain is alive', domain });
     }
   });
-
+// create the domain link from domain object
 const createLink = domain => `http://${domain.host}:${domain.port || 80}`;
 
+// add domain link key to domain  object
 const addLink = domain => Object.assign(domain, { link: createLink(domain) });
+
 
 const httpGet = domain => new Promise((resolve, reject) => {
   http(domain.link, (error, response, body) => {
