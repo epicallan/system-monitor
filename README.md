@@ -3,7 +3,9 @@
 ### How to get set up
 1. Clone the repo <br>
 2. Add the domains you would like to [monitor](https://github.com/epicallan/system-monitor/blob/master/src/configs/domains.js) <br>
-2. Install the NPM dependencies by `npm install`<br>
+3. Rename the [config.example.js](https://github.com/epicallan/system-monitor/blob/master/src/configs/config.example.js)  file to config.js and put the right email credentials.
+<br>Incase emails arent coming through check your gmail settings for insecure apps.<br>
+4. Install the NPM dependencies by `npm install`<br>
 5. Finally, run `npm start` or start up the app as a [docker](https://github.com/epicallan/system-monitor/blob/master/Dockerfile) container
 
 ## Tips
