@@ -1,16 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const routes = require('./router');
 const monitor = require('./monitor');
 const app = express();
 
 app.use(logger('dev'));
-app.use(bodyParser.json({ limit: '50mb' }));
-// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
-// monitors that various services are up
-// TODO should run in a different process
 monitor();
 
 app.use('/', routes);
@@ -22,8 +17,6 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// error handlers
-// development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res) => {
@@ -43,6 +36,5 @@ app.use((err, req, res) => {
     message: err.message
   });
 });
-
 
 module.exports = app;

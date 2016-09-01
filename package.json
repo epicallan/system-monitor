@@ -1,5 +1,5 @@
 {
-  "name": "github-deploy-server",
+  "name": "monitor-web-apps",
   "version": "0.0.3",
   "main": "server.js",
   "scripts": {
@@ -8,12 +8,10 @@
     "test": " NODE_ENV=test mocha $(find src -name '*-test.js') --watch"
   },
   "dependencies": {
-    "axios": "^0.14.0",
-    "body-parser": "~1.13.2",
+    "request": "^2.74.0",
     "cheerio": "^0.22.0",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "node-http-ping": "^0.2.2",
     "nodemailer": "^2.4.2"
   },
   "author": {
@@ -21,10 +19,11 @@
     "email": "epicallan.al@gmail.com"
   },
   "keywords": [
-    "github",
-    "git",
-    "deploy server",
-    "github webhooks"
+    "monitor",
+    "system",
+    "system admin",
+    "monitor systems",
+    "monitor websites"
   ],
   "devDependencies": {
     "chai": "^3.5.0",
