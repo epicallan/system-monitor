@@ -5,6 +5,12 @@ module.exports = [{
   html: { p: 'The Development Data Hub' } // optional
 },
 {
+  port: 990,
+  host: 'data.devinit.org',
+  emails: ['allan.lukwago@devinit.org', 'epicallan.al@gmail.com'],
+  html: { p: 'The Development Data Hub' } // optional
+},
+{
   port: 8080,
   host: 'data.devinit.org',
   emails: ['allan.lukwago@devinit.org'],

@@ -4,9 +4,9 @@ const { user, pass } = require('./configs/config');
 const transporter = nodemailer.createTransport(`smtps://${user}%40gmail.com:${pass}@smtp.gmail.com`);
 
 const mailOptions = (emails, message, domain) => ({
-  from: '"datahub deploy server" <epicallan.al@gmail.com>', // sender address
+  from: '"datahub system monitor server" <epicallan.al@gmail.com>', // sender address
   to: emails.join(','), // list of receivers
-  subject: `Deployment Status for ${domain}`, // Subject line
+  subject: `Domain Status for ${domain.host}:${domain.port}`, // Subject line
   text: message, // plaintext body
   html: `<p>${message}</p>` // html body
 });
