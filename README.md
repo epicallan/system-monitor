@@ -13,7 +13,8 @@
 ```
 $ // cd into app root and run
 $ docker build -t system-monitor .
-$ docker run -p 7000:7000  -v /home/user/system-monitor/src/configs:/src/src/configs --name system-app -d system-monitor
+$ docker run -p 7000:7000  -v /home/user/system-monitor/src/configs:/src/src/configs \
+  --name system-app -d system-monitor
 ```
 The config folder is set up as a volume so that any changes e.g addition of a new domain to the domains.js file can cause the app to restart
 
