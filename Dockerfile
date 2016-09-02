@@ -9,5 +9,5 @@ COPY . /src
 RUN npm install --production
 
 EXPOSE 7000
-
-CMD npm start
+ENV NODE_ENV production
+CMD ["nodemon", "server.js"]
