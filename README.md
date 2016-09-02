@@ -24,5 +24,6 @@ The config folder is set up as a volume so that any changes e.g addition of a ne
 
 ## TODO
 - create proper views for the various api endpoints -- currently only one localhost:7000/status
+- Add API endpoint for querying individual app online/offline state
 
 @ MIT LICENSED
