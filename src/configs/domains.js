@@ -14,7 +14,8 @@ module.exports = [{
   port: 80,
   host: 'data.devinit.org',
   emails: ['allan.lukwago@devinit.org', 'epicallan.al@gmail.com'],
-  html: { h2: 'The Development Data Hub' } // optional
+  // should report failure coz we dont have an h2 tag with that copy
+  html: { h2: 'The Development Data Hub' }
 },
 {
   port: 8080,

@@ -8,6 +8,15 @@
 4. Install the NPM dependencies by `npm install`<br>
 5. Finally, run `npm start` or start up the app as a [docker](https://github.com/epicallan/system-monitor/blob/master/Dockerfile) container
 
+## Docker setup
+
+```
+$ // cd into app root and run
+$ docker build -t system-monitor .
+$ docker run -p 7000:7000  -v /home/user/system-monitor/src/configs:/src/src/configs \
+ --name system-app -d  system-monitor
+```
+
 ## Tips
 - visit the localhost:7000/status route to see current state of the domains.
 - On App start a function is started that checks for app status every after 10 mins
