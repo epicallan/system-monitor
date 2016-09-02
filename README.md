@@ -16,7 +16,7 @@ $ docker build -t system-monitor .
 $ docker run -p 7000:7000  -v /home/user/system-monitor/src/configs:/src/src/configs \
  --name system-app -d  system-monitor
 ```
-The config file is set up as a volume folder so that any changes eg addition of a new domain to the domains.js file can cause the app to restart
+The config folder is set up as a volume so that any changes e.g addition of a new domain to the domains.js file can cause the app to restart
 
 ## Tips
 - visit the localhost:7000/status route to see current state of the domains.
