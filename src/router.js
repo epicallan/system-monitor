@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 
 router.get('/status', (req, res) => {
   const monitorResults = req.monitor(); // added through middleware
-  Promise.all(monitorResults).then(values => {
-    res.status(200).json(values);
+  Promise.all(monitorResults).then(statuses => {
+    res.status(200).json(statuses);
   });
 });
 
