@@ -14,8 +14,10 @@ setInterval(() => {
 }, INTERVAL);
 
 /* eslint-disable no-param-reassign */
+// middle ware
 app.use((req, res, next) => {
-  if (req.path === '/status') req.monitor = monitor;
+  // for status route add the monitor function to the request object
+  if (req.path === '/status') req.monitor = monitor; 
   next();
 });
 
